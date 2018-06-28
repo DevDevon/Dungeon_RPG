@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game.h"
-#include "Character.h"
 
 // initializes the game
 int main() {

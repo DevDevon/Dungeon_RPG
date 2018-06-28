@@ -31,7 +31,7 @@ void Game::createCharacter() {
 
 	std::cout << "\nType your choice: ";
 
-	while (pickClassValidity(pickClass) == EClassInfo.Invalid_Status) {
+	while (!getClassValidity(pickClass)) { //TODO seperate checking validity and setting class
 		std::cout << "\nHuh? I think you meant to type one of the following classes or one of the classes with \"info\" afterwards";
 		classPrint();
 		std::cout << "\nType your choice: ";
@@ -42,11 +42,12 @@ void Game::createCharacter() {
 	return;
 }
 
-EClasses Game::pickClassValidity(FString pickClass) const {
+bool Game::getClassValidity(FString pickClass) const {
 
 	std::getline(std::cin, pickClass);
 
 	FString lowerList = "", lowerClass = "";
+	int32 x = 0;
 
 	for (auto i : pickClass) {
 		lowerClass += tolower(i);
@@ -56,7 +57,11 @@ EClasses Game::pickClassValidity(FString pickClass) const {
 		for (auto n : i) {
 			lowerList += tolower(n);
 		}
-		if (lowerClass == lowerList || lowerClass + " info" == lowerList) {	return true; }
+		if (lowerClass == lowerList) { //if they are the same then set class in character and return true
+			//mCharacter.setClass(x);
+			return true;
+		}
+		x++;
 	}
 
 	return false;

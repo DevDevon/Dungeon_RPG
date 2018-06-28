@@ -21,7 +21,6 @@ enum class EClasses {
 	D_info
 };
 
-
 class Game
 {
 public:
@@ -30,15 +29,14 @@ public:
 	Game();
 	~Game();
 
-	EClasses EClassInfo;
+	Character mCharacter;
 
 	void MainGame();
 
 private:
 	//all logic for main program in private
-	Character mCharacter;
 	void createCharacter();
-	EClasses pickClassValidity(FString) const;
+	bool getClassValidity(FString) const; //TODO return more useful information
 
 	void classPrint() const;
 
